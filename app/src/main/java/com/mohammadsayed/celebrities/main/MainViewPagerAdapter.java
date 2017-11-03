@@ -1,13 +1,10 @@
 package com.mohammadsayed.celebrities.main;
 
-import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

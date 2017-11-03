@@ -4,4 +4,12 @@
     <string name="home_title_popular">Popular</string>
     <string name="home_title_explore">Explore</string>
     <string name="home_title_most_appearance">Most Appearance</string>
+
+
+    <string name="snackbar_dismiss">Dismiss</string>
+    <string name="snackbar_retry">Retry</string>
+
+    <string name="error_unknown">Unknown Error</string>
+    <string name="error_format">Error (%1$d): %2$s</string>
+
 </resources>

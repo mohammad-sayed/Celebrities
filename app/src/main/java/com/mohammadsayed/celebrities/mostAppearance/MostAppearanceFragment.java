@@ -2,7 +2,6 @@ package com.mohammadsayed.celebrities.mostAppearance;
 
 import android.view.View;
 
-import com.mohammadsayed.architecture.core.BaseFragment;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 

@@ -1,15 +1,15 @@
 package com.mohammadsayed.celebrities.popular;
 
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.mohammadsayed.architecture.core.BaseActivity;
-import com.mohammadsayed.architecture.core.BaseFragment;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
+import com.mohammadsayed.celebrities.data.Person;
+
+import java.util.List;
 
 public class PopularFragment extends BaseMainViewPagerFragment<PopularContract.Presenter>
-        implements PopularContract.ViewCallback<PopularContract.Presenter> {
+        implements PopularContract.ViewCallback<PopularContract.Presenter>, BaseMainViewPagerFragment.OnLoadMoreListener {
 
     public static PopularFragment getNewInstance() {
         return new PopularFragment();
@@ -26,11 +26,24 @@ public class PopularFragment extends BaseMainViewPagerFragment<PopularContract.P
     }
 
     @Override
-    protected void initializeViewsAndData(View view) {
+    public PopularContract.Presenter setUpPresenter() {
+        return new PopularPresenter(getContext());
     }
 
     @Override
-    public PopularContract.Presenter setUpPresenter() {
-        return new PopularPresenter(getContext());
+    protected void initializeViewsAndData(View view) {
+        super.initializeViewsAndData(view);
+        getPresenter().getPopularPeople();
+        addLoadMoreListener(this);
+    }
+
+    @Override
+    public void onLoadMore() {
+        getPresenter().getPopularPeople();
+    }
+
+    @Override
+    public void addPopularPeopleToList(List<Person> persons) {
+        getPersonsAdapter().addPersonsList(persons);
     }
 }

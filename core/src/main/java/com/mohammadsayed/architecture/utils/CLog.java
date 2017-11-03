@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class CLog {
 
-    private static final boolean IS_LOG_ENABLED = false;
+    private static final boolean IS_LOG_ENABLED = true;
 
     public static void i(String tag, String msg) {
         if (IS_LOG_ENABLED) {
