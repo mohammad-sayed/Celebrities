@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.mohammadsayed.architecture.core.BasePresenter;
+import com.mohammadsayed.celebrities.AppUtility;
 import com.mohammadsayed.celebrities.R;
 
 /**
@@ -27,10 +28,16 @@ public abstract class BaseMainViewPagerFragment<P extends BasePresenter> extends
     @Override
     protected void initializeViewsAndData(View view) {
         super.initializeViewsAndData(view);
+        initializeRecyclerView(view);
+    }
+
+    private void initializeRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_main);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        int spanCount = 2;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), spanCount);
         recyclerView.setLayoutManager(gridLayoutManager);
-        mPersonsAdapter = new PersonAdapter(getContext());
+        int displayWidth = AppUtility.getDisplayWidth(getActivity());
+        mPersonsAdapter = new PersonAdapter(getContext(), displayWidth, spanCount);
         recyclerView.setAdapter(mPersonsAdapter);
     }
 

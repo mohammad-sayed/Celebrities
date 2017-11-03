@@ -11,6 +11,11 @@ public interface Constants {
         String GET_POPULAR_PERSONS_URI = "/person/popular";
     }
 
+    interface Image {
+        String BASE_IMAGES_URL = "http://image.tmdb.org/t/p/";
+        String PROFILE_SIZE = "w185";
+    }
+
     interface UrlParameters {
         interface Keys {
             String API_KEY = "api_key";
