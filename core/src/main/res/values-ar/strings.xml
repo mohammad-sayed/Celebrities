@@ -1,0 +1,8 @@
+<resources>
+    <string name="error_response_timeout">استغرق الطلب وقتا طويلا، يرجى إعادة المحاولة</string>
+    <string name="error_no_internet_connection">لا يوجد اتصال بالإنترنت</string>
+    <string name="error_no_socket_connection">عذراً، لا يمكننا الاتصال بالخادم، الرجاء إعادة المحاولة</string>
+    <string name="error_unknown">خطأ غير معروف</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+</resources>

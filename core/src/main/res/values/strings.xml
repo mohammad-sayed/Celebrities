@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name" translatable="false">Core Architecture</string>
+    <string name="action_response" translatable="false">Action Response</string>
+    <string name="start_service_action" translatable="false">Get News</string>
+    <string name="error_response_timeout">Request takes too long, please try again</string>
+    <string name="error_no_internet_connection">No internet connection</string>
+    <string name="error_no_socket_connection">Sorry, we can\'t connect with server, please try again</string>
+    <string name="error_unknown">Unknown Error</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+
+    <!-- Language Values -->
+    <string name="locale_arabic" translatable="false">ar</string>
+    <string name="locale_english" translatable="false">en</string>
+
+    <!-- Language Names -->
+    <string name="language_arabic" translatable="false">العربية</string>
+    <string name="language_english" translatable="false">English</string>
+
+</resources>
