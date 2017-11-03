@@ -5,9 +5,6 @@ import android.support.design.widget.Snackbar;
 
 import com.mohammadsayed.architecture.core.Presenter;
 import com.mohammadsayed.architecture.network.CoreError;
-import com.orgon.kazzeem.agent.Constants;
-import com.orgon.kazzeem.agent.R;
-import com.orgon.kazzeem.agent.data.Agent;
 
 /**
  * Created by mohammad on 1/15/17.

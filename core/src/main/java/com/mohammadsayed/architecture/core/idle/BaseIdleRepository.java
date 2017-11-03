@@ -3,10 +3,6 @@ package com.mohammadsayed.architecture.core.idle;
 import android.content.Context;
 
 import com.mohammadsayed.architecture.core.Repository;
-import com.orgon.kazzeem.agent.SocketConnectionHandlerWrapper;
-import com.orgon.kazzeem.agent.data.Agent;
-import com.orgon.kazzeem.agent.data.service.socketio.SocketIOService;
-import com.orgon.kazzeem.agent.utils.AppUtil;
 
 import java.util.ArrayList;
 
