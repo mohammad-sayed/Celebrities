@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         //applicationId "com.mohammadsayed.architecture"
-        minSdkVersion 10
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,19 +19,20 @@ android {
     }
 }
 
-def appcompat_version = "25.3.1"
+def appcompat_version = "26.1.0"
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${appcompat_version}"
-    compile "com.android.support:recyclerview-v7:${appcompat_version}"
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.android.volley:volley:1.0.0'
-    compile('io.socket:socket.io-client:0.8.3') {
+    testImplementation 'junit:junit:4.12'
+    implementation "com.android.support:appcompat-v7:${appcompat_version}"
+    implementation "com.android.support:recyclerview-v7:${appcompat_version}"
+    implementation "com.android.support:design:${appcompat_version}"
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.android.volley:volley:1.0.0'
+    implementation('io.socket:socket.io-client:0.8.3') {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
