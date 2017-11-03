@@ -1,10 +1,7 @@
 package com.mohammadsayed.celebrities.popular;
 
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.mohammadsayed.architecture.core.BaseActivity;
-import com.mohammadsayed.architecture.core.BaseFragment;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 
@@ -27,6 +24,7 @@ public class PopularFragment extends BaseMainViewPagerFragment<PopularContract.P
 
     @Override
     protected void initializeViewsAndData(View view) {
+        super.initializeViewsAndData(view);
     }
 
     @Override
