@@ -68,6 +68,9 @@ public class GsonJsonRequest<T> extends JsonRequest<T> {
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
+            if (e.getMessage() != null) {
+                CLog.i("Test-Response", "Error: " + e.getMessage());
+            }
             return Response.error(new ParseError(e));
         }
     }

@@ -14,7 +14,7 @@ import com.mohammadsayed.celebrities.R;
 public abstract class BaseMainViewPagerFragment<P extends BasePresenter> extends BaseInternetFragment<P> {
 
     private String mPageTitle;
-    private PersonAdapter mPersonAdapter;
+    private PersonAdapter mPersonsAdapter;
 
     public void setPageTitle(String pageTitle) {
         this.mPageTitle = pageTitle;
@@ -26,10 +26,15 @@ public abstract class BaseMainViewPagerFragment<P extends BasePresenter> extends
 
     @Override
     protected void initializeViewsAndData(View view) {
+        super.initializeViewsAndData(view);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_main);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        mPersonAdapter = new PersonAdapter(getContext());
-        recyclerView.setAdapter(mPersonAdapter);
+        mPersonsAdapter = new PersonAdapter(getContext());
+        recyclerView.setAdapter(mPersonsAdapter);
+    }
+
+    public PersonAdapter getPersonsAdapter() {
+        return mPersonsAdapter;
     }
 }
