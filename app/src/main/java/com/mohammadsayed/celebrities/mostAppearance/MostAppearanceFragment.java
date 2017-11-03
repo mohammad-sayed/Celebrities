@@ -10,7 +10,7 @@ public class MostAppearanceFragment extends BaseFragment<MostAppearanceContract.
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_popular;
+        return R.layout.fragment_most_appearance;
     }
 
     @Override
