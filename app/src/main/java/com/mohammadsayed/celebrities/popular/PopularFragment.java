@@ -6,9 +6,14 @@ import android.view.View;
 import com.mohammadsayed.architecture.core.BaseActivity;
 import com.mohammadsayed.architecture.core.BaseFragment;
 import com.mohammadsayed.celebrities.R;
+import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 
-public class PopularFragment extends BaseFragment<PopularContract.Presenter>
+public class PopularFragment extends BaseMainViewPagerFragment<PopularContract.Presenter>
         implements PopularContract.ViewCallback<PopularContract.Presenter> {
+
+    public static PopularFragment getNewInstance() {
+        return new PopularFragment();
+    }
 
     @Override
     protected int getLayoutResource() {
@@ -22,7 +27,6 @@ public class PopularFragment extends BaseFragment<PopularContract.Presenter>
 
     @Override
     protected void initializeViewsAndData(View view) {
-
     }
 
     @Override

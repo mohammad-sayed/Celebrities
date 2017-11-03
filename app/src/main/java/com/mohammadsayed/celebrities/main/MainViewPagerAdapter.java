@@ -1,11 +1,13 @@
 package com.mohammadsayed.celebrities.main;
 
-import android.support.v4.app.Fragment;
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.mohammadsayed.architecture.core.BaseFragment;
+import com.mohammadsayed.celebrities.R;
+import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,15 +16,15 @@ import java.util.List;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
-    private List<Fragment> mFragments;
+    private List<BaseMainViewPagerFragment> mFragments;
 
-    public MainViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public MainViewPagerAdapter(FragmentManager fm, List<BaseMainViewPagerFragment> fragments) {
         super(fm);
         this.mFragments = fragments;
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public BaseMainViewPagerFragment getItem(int position) {
         if (mFragments != null && !mFragments.isEmpty() && position < mFragments.size()) {
             return mFragments.get(position);
         }
@@ -35,5 +37,15 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
             return mFragments.size();
         }
         return 0;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        String title = null;
+        BaseMainViewPagerFragment fragment = getItem(position);
+        if (fragment != null) {
+            title = fragment.getPageTitle();
+        }
+        return title;
     }
 }

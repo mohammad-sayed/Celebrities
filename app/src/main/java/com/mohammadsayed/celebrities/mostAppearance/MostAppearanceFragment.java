@@ -4,9 +4,15 @@ import android.view.View;
 
 import com.mohammadsayed.architecture.core.BaseFragment;
 import com.mohammadsayed.celebrities.R;
+import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 
-public class MostAppearanceFragment extends BaseFragment<MostAppearanceContract.Presenter>
+public class MostAppearanceFragment extends BaseMainViewPagerFragment<MostAppearanceContract.Presenter>
         implements MostAppearanceContract.ViewCallback<MostAppearanceContract.Presenter> {
+
+    public static MostAppearanceFragment getNewInstance() {
+        return new MostAppearanceFragment();
+    }
+
 
     @Override
     protected int getLayoutResource() {
