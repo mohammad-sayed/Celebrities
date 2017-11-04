@@ -12,6 +12,7 @@ public interface Constants {
         String SEARCH_PEOPLE_URI = "/search/person";
         String GET_TOP_20_MOVIES_URI = "/movie/popular";
         String GET_MOVIE_CREDITS_URI = "/movie/%1$d/credits";
+        String GET_PERSON_DETAILS_URI = "/person/%1$d";
     }
 
     interface Image {
@@ -46,7 +47,7 @@ public interface Constants {
         int EXPLORE_MORE_PERSONS = 3;
         int GET_TOP_20_MOVIES = 4;
         int GET_MOVIES_CREDITS = 5;
-        int GET_PERSONS_DETAILS = 6;
+        int GET_PERSON_DETAILS = 6;
     }
 
     interface ResponseCodes {

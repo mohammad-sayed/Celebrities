@@ -6,11 +6,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mohammadsayed.architecture.utils.StringUtil;
 import com.mohammadsayed.celebrities.AppUtility;
+import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseInternetFragment;
 import com.mohammadsayed.celebrities.data.Person;
 import com.mohammadsayed.celebrities.data.PersonDetails;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -66,17 +69,47 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
     }
 
     public void setPerson(Person person) {
-        getPresenter().getPersonDetails(person);
+        getPresenter().savePresonDetails(person);
+        getPresenter().getPersonDetails();
     }
 
     @Override
     public void displayPersonData(Person person) {
-
+        if (getContext() == null) {
+            return;
+        }
+        if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
+            String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, person.getProfilePicture());
+            Picasso.with(getContext()).load(fullUrl).error(R.drawable.img_not_found).into(mIvProfilePicture);
+        } else {
+            Picasso.with(getContext()).load(R.drawable.img_not_found).into(mIvProfilePicture);
+        }
+        mTvName.setText(person.getName());
     }
 
     @Override
     public void displayPersonDetails(PersonDetails personDetails) {
+        mTvBiography.setText(personDetails.getBiography());
+        String placeOfBirth = personDetails.getPlaceOfBirth();
+        if (StringUtil.isEmpty(placeOfBirth, true)) {
+            placeOfBirth = getString(R.string.personal_details_place_of_birth_unknown);
+        }
+        mTvPlaceOfBirth.setText(placeOfBirth);
+        String dateOfBirth = personDetails.getBirthDay();
+        if (StringUtil.isEmpty(dateOfBirth, true)) {
+            dateOfBirth = getString(R.string.personal_details_place_of_birth_unknown);
+        }
+        mTvDateOfBirth.setText(dateOfBirth);
 
+        String dateOfDeath = personDetails.getDeathDay();
+        if (StringUtil.isEmpty(dateOfDeath, true)) {
+            mTvDateOfDeathTitle.setVisibility(View.GONE);
+            mTvDateOfDeath.setVisibility(View.GONE);
+        } else {
+            mTvDateOfDeath.setText(dateOfDeath);
+            mTvDateOfDeathTitle.setVisibility(View.VISIBLE);
+            mTvDateOfDeath.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

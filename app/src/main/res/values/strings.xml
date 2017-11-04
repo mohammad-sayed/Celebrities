@@ -23,5 +23,6 @@
     <string name="personal_details_birthday">Birthday</string>
     <string name="personal_details_deathday">Death Day</string>
     <string name="personal_details_photos">Photos</string>
+    <string name="personal_details_place_of_birth_unknown">Unknown</string>
 
 </resources>

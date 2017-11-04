@@ -24,7 +24,9 @@ public class PersonDetailsContract {
     }
 
     public interface Presenter<V extends ViewCallback, R extends BaseRepository> extends BasePresenter<V, R> {
-        void getPersonDetails(Person person);
+        void savePresonDetails(Person person);
+
+        void getPersonDetails();
     }
 
     public interface PresenterCallback extends BasePresenterCallback {
@@ -34,7 +36,9 @@ public class PersonDetailsContract {
     }
 
     public interface Repository<P extends PresenterCallback> extends BaseRepository<P> {
-        void getPersonDetails(Person person);
+        void savePersonDetails(Person person);
+
+        void getPersonDetails();
 
         void getPersonImages();
     }
