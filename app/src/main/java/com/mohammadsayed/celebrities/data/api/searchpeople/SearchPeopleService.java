@@ -1,4 +1,4 @@
-package com.mohammadsayed.celebrities.data.api.getpopularpersons;
+package com.mohammadsayed.celebrities.data.api.searchpeople;
 
 import android.content.Context;
 
@@ -8,6 +8,7 @@ import com.mohammadsayed.architecture.network.BaseRequest;
 import com.mohammadsayed.architecture.network.BaseResponse;
 import com.mohammadsayed.architecture.network.CoreError;
 import com.mohammadsayed.celebrities.bases.BaseVolleyService;
+import com.mohammadsayed.celebrities.data.api.getpopularpersons.GetPersonsResponse;
 
 import java.util.HashMap;
 
@@ -15,32 +16,34 @@ import java.util.HashMap;
  * Created by mohammad on 1/16/17.
  */
 
-public class GetPopularPersonsService extends BaseVolleyService<GetPersonsResponse> {
+public class SearchPeopleService extends BaseVolleyService<GetPersonsResponse> {
 
-    private String TAG = GetPopularPersonsService.class.getSimpleName();
+    private String TAG = SearchPeopleService.class.getSimpleName();
+    private String mQuery;
     private int mPage;
 
-    public GetPopularPersonsService(Context context, int page, OnServiceSuccessListener<GetPersonsResponse> onServiceSuccessListener, OnServiceErrorListener onServiceErrorListener) {
+    public SearchPeopleService(Context context, String query, int page, OnServiceSuccessListener<GetPersonsResponse> onServiceSuccessListener, OnServiceErrorListener onServiceErrorListener) {
         super(context, onServiceSuccessListener, onServiceErrorListener);
+        this.mQuery = query;
         this.mPage = page;
     }
 
     @Override
     protected BaseRequest prepareRequest() {
-        GetPopularPersonsRequest getAppSettingsRequest = new GetPopularPersonsRequest(mPage);
-        getAppSettingsRequest.setOperationTag(TAG);
-        if (getAppSettingsRequest.getUrlParameters() == null) {
-            getAppSettingsRequest.setUrlParameters(new HashMap<String, String>());
+        SearchPeopleRequest request = new SearchPeopleRequest(mQuery, mPage);
+        request.setOperationTag(TAG);
+        if (request.getUrlParameters() == null) {
+            request.setUrlParameters(new HashMap<String, String>());
         }
-        getAppSettingsRequest.getUrlParameters().putAll(getBaseUrlParameters());
-        return getAppSettingsRequest;
+        request.getUrlParameters().putAll(getBaseUrlParameters());
+        return request;
     }
 
     @Override
     protected BaseResponse prepareResponse() {
-        GetPersonsResponse getPersonsResponse = new GetPersonsResponse();
-        getPersonsResponse.setResponseClass(GetPersonsResponse.class);
-        return getPersonsResponse;
+        GetPersonsResponse searchPeopleResponse = new GetPersonsResponse();
+        searchPeopleResponse.setResponseClass(GetPersonsResponse.class);
+        return searchPeopleResponse;
     }
 
     @Override

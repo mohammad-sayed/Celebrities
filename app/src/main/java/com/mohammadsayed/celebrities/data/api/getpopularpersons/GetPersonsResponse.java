@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by mohammad on 3/3/17.
  */
 
-public class GetPopularPersonsResponse extends BaseResponse<GetPopularPersonsResponse> {
+public class GetPersonsResponse extends BaseResponse<GetPersonsResponse> {
 
     private int page;
 
