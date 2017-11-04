@@ -19,6 +19,7 @@ public interface Constants {
     interface Photo {
         String BASE_IMAGES_URL = "http://image.tmdb.org/t/p/";
         String PROFILE_SIZE = "w185";
+        String ORIGINAL_SIZE = "original";
     }
 
     interface UrlParameters {
@@ -40,6 +41,7 @@ public interface Constants {
 
     interface ExtrasKeys {
         String PERSON = "person";
+        String PHOTO = "photo";
     }
 
     interface ErrorCodes {

@@ -1,5 +1,6 @@
 package com.mohammadsayed.celebrities.persondetails;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,12 +14,15 @@ import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseInternetFragment;
 import com.mohammadsayed.celebrities.data.Person;
 import com.mohammadsayed.celebrities.data.PersonDetails;
+import com.mohammadsayed.celebrities.data.Photo;
+import com.mohammadsayed.celebrities.photo.PhotoActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsContract.Presenter>
-        implements PersonDetailsContract.ViewCallback<PersonDetailsContract.Presenter> {
+        implements PersonDetailsContract.ViewCallback<PersonDetailsContract.Presenter>,
+        PersonPhotosAdapter.OnPersonPhotoSelectedListener {
 
 
     private ImageView mIvProfilePicture;
@@ -64,18 +68,21 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), spanCount);
         recyclerView.setLayoutManager(gridLayoutManager);
         int displayWidth = AppUtility.getDisplayWidth(getActivity());
-        mPersonPhotosAdapter = new PersonPhotosAdapter(getContext(), displayWidth, spanCount);
+        mPersonPhotosAdapter = new PersonPhotosAdapter(getContext(), displayWidth, spanCount, this);
         recyclerView.setAdapter(mPersonPhotosAdapter);
     }
 
     public void setPerson(Person person) {
+        if (person == null) {
+            return;
+        }
         getPresenter().savePresonDetails(person);
         getPresenter().getPersonDetails();
     }
 
     @Override
     public void displayPersonData(Person person) {
-        if (getContext() == null) {
+        if (getContext() == null || person == null) {
             return;
         }
         if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
@@ -115,5 +122,12 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
     @Override
     public void displayPersonImages(List<com.mohammadsayed.celebrities.data.Photo> imagesPathList) {
         mPersonPhotosAdapter.setPhotos(imagesPathList);
+    }
+
+    @Override
+    public void onPhotoSelected(Photo photo) {
+        Intent intent = new Intent(getContext(), PhotoActivity.class);
+        intent.putExtra(Constants.ExtrasKeys.PHOTO, photo);
+        startActivity(intent);
     }
 }
