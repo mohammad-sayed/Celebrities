@@ -50,7 +50,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
         if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
             String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, person.getProfilePicture());
-            Picasso.with(mContext).load(fullUrl).into(holder.mIvProfilePicture);
+            Picasso.with(mContext).load(fullUrl).error(R.drawable.img_not_found).into(holder.mIvProfilePicture);
+        } else {
+            Picasso.with(mContext).load(R.drawable.img_not_found).into(holder.mIvProfilePicture);
         }
 
         holder.mTvName.setText(person.getName());
@@ -77,6 +79,11 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
             return;
         }
         mPersonDetails.addAll(personDetails);
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        mPersonDetails.clear();
         notifyDataSetChanged();
     }
 

@@ -7,7 +7,7 @@ import com.mohammadsayed.architecture.core.OnServiceSuccessListener;
 import com.mohammadsayed.architecture.core.Repository;
 import com.mohammadsayed.architecture.network.CoreError;
 import com.mohammadsayed.celebrities.Constants;
-import com.mohammadsayed.celebrities.data.api.getpopularpersons.GetPopularPersonsResponse;
+import com.mohammadsayed.celebrities.data.api.getpopularpersons.GetPersonsResponse;
 import com.mohammadsayed.celebrities.data.api.getpopularpersons.GetPopularPersonsService;
 
 /**
@@ -37,9 +37,9 @@ public class PopularRepository extends Repository<PopularContract.PresenterCallb
             }
         };
 
-        final OnServiceSuccessListener<GetPopularPersonsResponse> onServiceSuccessListener = new OnServiceSuccessListener<GetPopularPersonsResponse>() {
+        final OnServiceSuccessListener<GetPersonsResponse> onServiceSuccessListener = new OnServiceSuccessListener<GetPersonsResponse>() {
             @Override
-            public void onSuccess(GetPopularPersonsResponse response) {
+            public void onSuccess(GetPersonsResponse response) {
                 mPage = response.getPage();
                 mTotalPages = response.getTotalPages();
                 getPresenterCallback().onPopularPeopleRetrieved(response.getPersonsList());

@@ -9,6 +9,7 @@ public interface Constants {
     interface Network {
         String BASE_URL = "https://api.themoviedb.org/3";
         String GET_POPULAR_PERSONS_URI = "/person/popular";
+        String SEARCH_PEOPLE_URI = "/search/person";
     }
 
     interface Image {
@@ -20,6 +21,7 @@ public interface Constants {
         interface Keys {
             String API_KEY = "api_key";
             String PAGE = "page";
+            String QUERY = "query";
         }
 
         interface Values {
@@ -34,6 +36,8 @@ public interface Constants {
 
     interface ErrorCodes {
         int GET_POPULAR_PEOPLE = 1;
+        int EXPLORE_PERSONS = 2;
+        int EXPLORE_MORE_PERSONS = 3;
     }
 
     interface ResponseCodes {

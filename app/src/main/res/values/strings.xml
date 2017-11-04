@@ -12,4 +12,8 @@
     <string name="error_unknown">Unknown Error</string>
     <string name="error_format">Error (%1$d): %2$s</string>
 
+    <string name="explore_search_title">Search</string>
+    <string name="explore_type_in_search">Insert a person name</string>
+    <string name="explore_no_result">Sorry, There is no result matching your query</string>
+
 </resources>
