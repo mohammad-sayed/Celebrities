@@ -31,12 +31,12 @@ public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolde
 
 
     @Override
-    int getItemLayout() {
+    protected int getItemLayout() {
         return R.layout.list_item_person;
     }
 
     @Override
-    PersonViewHolder createViewHolder(View view) {
+    protected PersonViewHolder createViewHolder(View view) {
         return new PersonViewHolder(view);
     }
 
