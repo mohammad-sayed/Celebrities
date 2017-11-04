@@ -14,7 +14,7 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_popular;
+        return R.layout.fragment_person_details;
     }
 
     @Override
