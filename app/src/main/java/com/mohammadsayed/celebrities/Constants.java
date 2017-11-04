@@ -13,9 +13,10 @@ public interface Constants {
         String GET_TOP_20_MOVIES_URI = "/movie/popular";
         String GET_MOVIE_CREDITS_URI = "/movie/%1$d/credits";
         String GET_PERSON_DETAILS_URI = "/person/%1$d";
+        String GET_PERSON_PHOTOS_URI = "/person/%1$d/images";
     }
 
-    interface Image {
+    interface Photo {
         String BASE_IMAGES_URL = "http://image.tmdb.org/t/p/";
         String PROFILE_SIZE = "w185";
     }
@@ -48,6 +49,7 @@ public interface Constants {
         int GET_TOP_20_MOVIES = 4;
         int GET_MOVIES_CREDITS = 5;
         int GET_PERSON_DETAILS = 6;
+        int GET_PERSON_PHOTOS = 7;
     }
 
     interface ResponseCodes {

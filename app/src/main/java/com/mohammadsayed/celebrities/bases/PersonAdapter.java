@@ -47,7 +47,7 @@ public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolde
         final Person person = mPersonDetails.get(position);
 
         if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
-            String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, person.getProfilePicture());
+            String fullUrl = AppUtility.getFullUrl(Constants.Photo.PROFILE_SIZE, person.getProfilePicture());
             Picasso.with(mContext).load(fullUrl).error(R.drawable.img_not_found).into(holder.mIvProfilePicture);
         } else {
             Picasso.with(mContext).load(R.drawable.img_not_found).into(holder.mIvProfilePicture);

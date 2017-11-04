@@ -5,9 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.mohammadsayed.architecture.utils.StringUtil;
+import com.mohammadsayed.celebrities.AppUtility;
+import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseGridAdapter;
-import com.mohammadsayed.celebrities.data.Image;
+import com.mohammadsayed.celebrities.data.Photo;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +22,11 @@ import java.util.List;
 
 public class PersonPhotosAdapter extends BaseGridAdapter<PersonPhotosAdapter.PersonPhotoViewHolder> {
 
-    private List<Image> mImages;
+    private List<Photo> mPhotos;
 
     public PersonPhotosAdapter(Context context, int displayWidth, int columnSpan) {
         super(context, displayWidth, columnSpan);
-        mImages = new ArrayList<>();
+        mPhotos = new ArrayList<>();
     }
 
 
@@ -38,42 +42,42 @@ public class PersonPhotosAdapter extends BaseGridAdapter<PersonPhotosAdapter.Per
 
     @Override
     public void onBindViewHolder(PersonPhotoViewHolder holder, int position) {
-        Image image = mImages.get(position);
+        Photo photo = mPhotos.get(position);
 
-        /*if (!StringUtil.isEmpty(image.getProfilePicture(), true)) {
-            String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, image.getProfilePicture());
+        if (!StringUtil.isEmpty(photo.getPhotoPath(), true)) {
+            String fullUrl = AppUtility.getFullUrl(Constants.Photo.PROFILE_SIZE, photo.getPhotoPath());
             Picasso.with(mContext).load(fullUrl).error(R.drawable.img_not_found).into(holder.mIvPhoto);
         } else {
             Picasso.with(mContext).load(R.drawable.img_not_found).into(holder.mIvPhoto);
-        }*/
+        }
     }
 
     @Override
     public int getItemCount() {
-        if (mImages != null) {
-            return mImages.size();
+        if (mPhotos != null) {
+            return mPhotos.size();
         }
         return 0;
     }
 
-    public void setImages(List<Image> images) {
-        if (images == null) {
+    public void setPhotos(List<Photo> photos) {
+        if (photos == null) {
             return;
         }
-        this.mImages = images;
+        this.mPhotos = photos;
         notifyDataSetChanged();
     }
 
-    public void addPersonsList(List<Image> images) {
-        if (images == null) {
+    public void addPersonsList(List<Photo> photos) {
+        if (photos == null) {
             return;
         }
-        mImages.addAll(images);
+        mPhotos.addAll(photos);
         notifyDataSetChanged();
     }
 
     public void clear() {
-        mImages.clear();
+        mPhotos.clear();
         notifyDataSetChanged();
     }
 

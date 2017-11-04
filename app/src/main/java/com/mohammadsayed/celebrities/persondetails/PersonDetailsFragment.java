@@ -60,7 +60,7 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
 
     private void initializeRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_person_details_images);
-        int spanCount = 2;
+        int spanCount = 3;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), spanCount);
         recyclerView.setLayoutManager(gridLayoutManager);
         int displayWidth = AppUtility.getDisplayWidth(getActivity());
@@ -79,7 +79,7 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
             return;
         }
         if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
-            String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, person.getProfilePicture());
+            String fullUrl = AppUtility.getFullUrl(Constants.Photo.PROFILE_SIZE, person.getProfilePicture());
             Picasso.with(getContext()).load(fullUrl).error(R.drawable.img_not_found).into(mIvProfilePicture);
         } else {
             Picasso.with(getContext()).load(R.drawable.img_not_found).into(mIvProfilePicture);
@@ -113,7 +113,7 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
     }
 
     @Override
-    public void displayPersonImages(List<String> imagesPathList) {
-
+    public void displayPersonImages(List<com.mohammadsayed.celebrities.data.Photo> imagesPathList) {
+        mPersonPhotosAdapter.setPhotos(imagesPathList);
     }
 }

@@ -6,6 +6,7 @@ import com.mohammadsayed.architecture.core.BasePresenterCallback;
 import com.mohammadsayed.architecture.core.BaseRepository;
 import com.mohammadsayed.celebrities.data.Person;
 import com.mohammadsayed.celebrities.data.PersonDetails;
+import com.mohammadsayed.celebrities.data.Photo;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class PersonDetailsContract {
 
         void displayPersonDetails(PersonDetails personDetails);
 
-        void displayPersonImages(List<String> imagesPathList);
+        void displayPersonImages(List<Photo> imagesPathList);
     }
 
     public interface Presenter<V extends ViewCallback, R extends BaseRepository> extends BasePresenter<V, R> {
@@ -32,7 +33,7 @@ public class PersonDetailsContract {
     public interface PresenterCallback extends BasePresenterCallback {
         void onPersonDetailsRetrieved(PersonDetails personDetails);
 
-        void onPersonImagesRetrieved(List<String> imagesPathList);
+        void onPersonPhotosRetrieved(List<Photo> imagesPathList);
     }
 
     public interface Repository<P extends PresenterCallback> extends BaseRepository<P> {
@@ -40,7 +41,7 @@ public class PersonDetailsContract {
 
         void getPersonDetails();
 
-        void getPersonImages();
+        void getPersonPhotos();
     }
 
 }

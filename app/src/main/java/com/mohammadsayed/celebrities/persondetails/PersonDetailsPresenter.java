@@ -10,6 +10,7 @@ import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.data.Person;
 import com.mohammadsayed.celebrities.data.PersonDetails;
+import com.mohammadsayed.celebrities.data.Photo;
 
 import java.util.List;
 
@@ -69,11 +70,11 @@ public class PersonDetailsPresenter extends Presenter<PersonDetailsContract.View
 
     private void getPersonImages() {
         getViewCallback().showLoadingIndicator(true);
-        getRepository().getPersonImages();
+        getRepository().getPersonPhotos();
     }
 
     @Override
-    public void onPersonImagesRetrieved(List<String> imagesPathList) {
+    public void onPersonPhotosRetrieved(List<Photo> imagesPathList) {
         getViewCallback().displayPersonImages(imagesPathList);
         getViewCallback().showLoadingIndicator(false);
     }
