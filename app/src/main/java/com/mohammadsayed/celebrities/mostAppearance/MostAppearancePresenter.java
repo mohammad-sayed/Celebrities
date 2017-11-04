@@ -36,11 +36,11 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
                     }
                 });
                 break;
-            case Constants.ErrorCodes.GET_MOVIES_CAST:
+            case Constants.ErrorCodes.GET_MOVIES_CREDITS:
                 getViewCallback().showSnackBar(error.getMessage(), Snackbar.LENGTH_INDEFINITE, R.string.snackbar_retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        getMoviesCasts();
+                        getMoviesCredits();
                     }
                 });
                 break;
@@ -48,7 +48,7 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
                 getViewCallback().showSnackBar(error.getMessage(), Snackbar.LENGTH_INDEFINITE, R.string.snackbar_retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        getMostAppearedPersonsDetails();
+                        getMostAppearedPersonsList();
                     }
                 });
                 break;
@@ -77,28 +77,28 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
     @Override
     public void onTopMoviesIdsRetrieved() {
         getViewCallback().showLoadingIndicator(false);
-        //getMoviesCasts();
+        getMoviesCredits();
     }
 
-    private void getMoviesCasts() {
+    private void getMoviesCredits() {
         getViewCallback().showLoadingIndicator(true);
-        getRepository().getMoviesCasts();
+        getRepository().getMoviesCredits();
     }
 
     @Override
     public void onMoviesCastsRetrieved() {
         getViewCallback().showLoadingIndicator(false);
-        getMostAppearedPersonsDetails();
+        //getMostAppearedPersonsList();
     }
 
-    private void getMostAppearedPersonsDetails() {
+    private void getMostAppearedPersonsList() {
         getViewCallback().showLoadingIndicator(true);
-        getRepository().getMostAppearedPersonsDetails();
+        getRepository().getMostAppearedPersonsList();
     }
 
     @Override
-    public void onMostAppearedPersonsDetailsRetrieved(List<Person> personsList) {
-        getRepository().getMostAppearedPersonsDetails();
+    public void onMostAppearedPersonsRetrieved(List<Person> personsList) {
+        getRepository().getMostAppearedPersonsList();
         getViewCallback().showLoadingIndicator(false);
     }
 

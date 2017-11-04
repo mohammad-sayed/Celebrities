@@ -27,13 +27,13 @@ public class GetTop20MoviesService extends BaseVolleyService<GetTop20MoviesRespo
 
     @Override
     protected BaseRequest prepareRequest() {
-        GetTop20MoviesRequest getAppSettingsRequest = new GetTop20MoviesRequest(mPage);
-        getAppSettingsRequest.setOperationTag(TAG);
-        if (getAppSettingsRequest.getUrlParameters() == null) {
-            getAppSettingsRequest.setUrlParameters(new HashMap<String, String>());
+        GetTop20MoviesRequest request = new GetTop20MoviesRequest(mPage);
+        request.setOperationTag(TAG);
+        if (request.getUrlParameters() == null) {
+            request.setUrlParameters(new HashMap<String, String>());
         }
-        getAppSettingsRequest.getUrlParameters().putAll(getBaseUrlParameters());
-        return getAppSettingsRequest;
+        request.getUrlParameters().putAll(getBaseUrlParameters());
+        return request;
     }
 
     @Override

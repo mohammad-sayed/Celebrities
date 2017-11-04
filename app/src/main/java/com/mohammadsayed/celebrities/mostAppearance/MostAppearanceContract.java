@@ -27,14 +27,14 @@ public class MostAppearanceContract {
 
         void onMoviesCastsRetrieved();
 
-        void onMostAppearedPersonsDetailsRetrieved(List<Person> personsList);
+        void onMostAppearedPersonsRetrieved(List<Person> personsList);
     }
 
     public interface Repository<P extends MostAppearanceContract.PresenterCallback> extends BaseRepository<P> {
         void getTopMoviesIds();
 
-        void getMoviesCasts();
+        void getMoviesCredits();
 
-        void getMostAppearedPersonsDetails();
+        void getMostAppearedPersonsList();
     }
 }

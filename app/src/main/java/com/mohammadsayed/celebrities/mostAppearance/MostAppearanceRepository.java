@@ -8,6 +8,9 @@ import com.mohammadsayed.architecture.core.Repository;
 import com.mohammadsayed.architecture.network.CoreError;
 import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.data.Movie;
+import com.mohammadsayed.celebrities.data.Person;
+import com.mohammadsayed.celebrities.data.api.getmoviecast.GetMovieCreditsResponse;
+import com.mohammadsayed.celebrities.data.api.getmoviecast.GetMovieCreditsService;
 import com.mohammadsayed.celebrities.data.api.gettopmovies.GetTop20MoviesResponse;
 import com.mohammadsayed.celebrities.data.api.gettopmovies.GetTop20MoviesService;
 
@@ -23,7 +26,9 @@ import java.util.Map;
 public class MostAppearanceRepository extends Repository<MostAppearanceContract.PresenterCallback> implements MostAppearanceContract.Repository<MostAppearanceContract.PresenterCallback> {
 
     private List<Movie> mTopMovies = new ArrayList<>();
+    private Map<Movie, List<Person>> mMoviesCreditsMap = new HashMap<>();
     private Map<Long, Integer> mPersonAppearance = new HashMap<>();
+    private int mMovieIndex = 0;
 
     public MostAppearanceRepository(Context context) {
         super(context);
@@ -52,12 +57,39 @@ public class MostAppearanceRepository extends Repository<MostAppearanceContract.
     }
 
     @Override
-    public void getMoviesCasts() {
+    public void getMoviesCredits() {
+        if (mTopMovies == null) {
+            getPresenterCallback().onMoviesCastsRetrieved();
+            return;
+        }
 
+        final OnServiceErrorListener onServiceErrorListener = new OnServiceErrorListener() {
+            @Override
+            public void onError(CoreError error) {
+                error.setStatusCode(Constants.ErrorCodes.GET_MOVIES_CREDITS);
+                getPresenterCallback().onError(error);
+            }
+        };
+
+        final OnServiceSuccessListener<GetMovieCreditsResponse> onServiceSuccessListener = new OnServiceSuccessListener<GetMovieCreditsResponse>() {
+            @Override
+            public void onSuccess(GetMovieCreditsResponse response) {
+                mMoviesCreditsMap.put(mTopMovies.get(mMovieIndex), response.getPersonList());
+                mMovieIndex++;
+                if (mMovieIndex < mTopMovies.size()) {
+                    getMoviesCredits();
+                } else {
+                    getPresenterCallback().onMoviesCastsRetrieved();
+                }
+            }
+        };
+        long movieId = mTopMovies.get(mMovieIndex).getId();
+        GetMovieCreditsService service = new GetMovieCreditsService(getContext(), movieId, onServiceSuccessListener, onServiceErrorListener);
+        service.start();
     }
 
     @Override
-    public void getMostAppearedPersonsDetails() {
+    public void getMostAppearedPersonsList() {
 
     }
 }

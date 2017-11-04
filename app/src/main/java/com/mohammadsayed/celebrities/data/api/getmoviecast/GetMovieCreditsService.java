@@ -1,4 +1,4 @@
-package com.mohammadsayed.celebrities.data.api.getpopularpersons;
+package com.mohammadsayed.celebrities.data.api.getmoviecast;
 
 import android.content.Context;
 
@@ -15,19 +15,19 @@ import java.util.HashMap;
  * Created by mohammad on 1/16/17.
  */
 
-public class GetPopularPersonsService extends BaseVolleyService<GetPersonsResponse> {
+public class GetMovieCreditsService extends BaseVolleyService<GetMovieCreditsResponse> {
 
-    private String TAG = GetPopularPersonsService.class.getSimpleName();
-    private int mPage;
+    private String TAG = GetMovieCreditsService.class.getSimpleName();
+    private long mMovieId;
 
-    public GetPopularPersonsService(Context context, int page, OnServiceSuccessListener<GetPersonsResponse> onServiceSuccessListener, OnServiceErrorListener onServiceErrorListener) {
+    public GetMovieCreditsService(Context context, long movieId, OnServiceSuccessListener<GetMovieCreditsResponse> onServiceSuccessListener, OnServiceErrorListener onServiceErrorListener) {
         super(context, onServiceSuccessListener, onServiceErrorListener);
-        this.mPage = page;
+        this.mMovieId = movieId;
     }
 
     @Override
     protected BaseRequest prepareRequest() {
-        GetPopularPersonsRequest request = new GetPopularPersonsRequest(mPage);
+        GetMovieCreditsRequest request = new GetMovieCreditsRequest(mMovieId);
         request.setOperationTag(TAG);
         if (request.getUrlParameters() == null) {
             request.setUrlParameters(new HashMap<String, String>());
@@ -38,13 +38,13 @@ public class GetPopularPersonsService extends BaseVolleyService<GetPersonsRespon
 
     @Override
     protected BaseResponse prepareResponse() {
-        GetPersonsResponse getPersonsResponse = new GetPersonsResponse();
-        getPersonsResponse.setResponseClass(GetPersonsResponse.class);
-        return getPersonsResponse;
+        GetMovieCreditsResponse getMovieCreditsResponse = new GetMovieCreditsResponse();
+        getMovieCreditsResponse.setResponseClass(GetMovieCreditsResponse.class);
+        return getMovieCreditsResponse;
     }
 
     @Override
-    public void onSuccess(GetPersonsResponse response) {
+    public void onSuccess(GetMovieCreditsResponse response) {
         //Callback_Step2_RespondToRepository_OnSuccess
         if (getOnServiceSuccessListener() != null) {
             getResponse().setResponse(response);
