@@ -58,4 +58,21 @@ public class Person {
     public void setAdult(boolean adult) {
         isAdult = adult;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Person) {
+            Person person = (Person) obj;
+            if (person.getId() == getId()) {
+                return true;
+            }
+            return false;
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) getId();
+    }
 }

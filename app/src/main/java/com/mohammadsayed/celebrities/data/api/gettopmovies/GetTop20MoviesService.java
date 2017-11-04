@@ -1,4 +1,4 @@
-package com.mohammadsayed.celebrities.data.api.getpopularpersons;
+package com.mohammadsayed.celebrities.data.api.gettopmovies;
 
 import android.content.Context;
 
@@ -15,19 +15,19 @@ import java.util.HashMap;
  * Created by mohammad on 1/16/17.
  */
 
-public class GetPopularPersonsService extends BaseVolleyService<GetPersonsResponse> {
+public class GetTop20MoviesService extends BaseVolleyService<GetTop20MoviesResponse> {
 
-    private String TAG = GetPopularPersonsService.class.getSimpleName();
+    private String TAG = GetTop20MoviesService.class.getSimpleName();
     private int mPage;
 
-    public GetPopularPersonsService(Context context, int page, OnServiceSuccessListener<GetPersonsResponse> onServiceSuccessListener, OnServiceErrorListener onServiceErrorListener) {
+    public GetTop20MoviesService(Context context, int page, OnServiceSuccessListener<GetTop20MoviesResponse> onServiceSuccessListener, OnServiceErrorListener onServiceErrorListener) {
         super(context, onServiceSuccessListener, onServiceErrorListener);
         this.mPage = page;
     }
 
     @Override
     protected BaseRequest prepareRequest() {
-        GetPopularPersonsRequest request = new GetPopularPersonsRequest(mPage);
+        GetTop20MoviesRequest request = new GetTop20MoviesRequest(mPage);
         request.setOperationTag(TAG);
         if (request.getUrlParameters() == null) {
             request.setUrlParameters(new HashMap<String, String>());
@@ -38,13 +38,13 @@ public class GetPopularPersonsService extends BaseVolleyService<GetPersonsRespon
 
     @Override
     protected BaseResponse prepareResponse() {
-        GetPersonsResponse getPersonsResponse = new GetPersonsResponse();
-        getPersonsResponse.setResponseClass(GetPersonsResponse.class);
-        return getPersonsResponse;
+        GetTop20MoviesResponse getTop20MoviesResponse = new GetTop20MoviesResponse();
+        getTop20MoviesResponse.setResponseClass(GetTop20MoviesResponse.class);
+        return getTop20MoviesResponse;
     }
 
     @Override
-    public void onSuccess(GetPersonsResponse response) {
+    public void onSuccess(GetTop20MoviesResponse response) {
         //Callback_Step2_RespondToRepository_OnSuccess
         if (getOnServiceSuccessListener() != null) {
             getResponse().setResponse(response);

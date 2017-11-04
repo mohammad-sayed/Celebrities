@@ -10,6 +10,8 @@ public interface Constants {
         String BASE_URL = "https://api.themoviedb.org/3";
         String GET_POPULAR_PERSONS_URI = "/person/popular";
         String SEARCH_PEOPLE_URI = "/search/person";
+        String GET_TOP_20_MOVIES_URI = "/movie/popular";
+        String GET_MOVIE_CREDITS_URI = "/movie/%1$d/credits";
     }
 
     interface Image {
@@ -38,6 +40,9 @@ public interface Constants {
         int GET_POPULAR_PEOPLE = 1;
         int EXPLORE_PERSONS = 2;
         int EXPLORE_MORE_PERSONS = 3;
+        int GET_TOP_20_MOVIES = 4;
+        int GET_MOVIES_CREDITS = 5;
+        int GET_PERSONS_DETAILS = 6;
     }
 
     interface ResponseCodes {
