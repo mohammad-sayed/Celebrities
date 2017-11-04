@@ -54,6 +54,12 @@ public class PopularPresenter extends Presenter<PopularContract.ViewCallback, Po
     }
 
     @Override
+    public void getMorePopularPeople() {
+        getViewCallback().showLoadingIndicator(true);
+        getRepository().getMorePopularPeople();
+    }
+
+    @Override
     public void onPopularPeopleRetrieved(List<Person> persons) {
         getViewCallback().addPopularPeopleToList(persons);
         getViewCallback().showLoadingIndicator(false);

@@ -39,7 +39,7 @@ public class PopularFragment extends BaseMainViewPagerFragment<PopularContract.P
 
     @Override
     public void onLoadMore() {
-        getPresenter().getPopularPeople();
+        getPresenter().getMorePopularPeople();
     }
 
     @Override

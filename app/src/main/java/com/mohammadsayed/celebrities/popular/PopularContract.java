@@ -20,6 +20,8 @@ public class PopularContract {
 
     public interface Presenter<V extends ViewCallback, R extends BaseRepository> extends BasePresenter<V, R> {
         void getPopularPeople();
+
+        void getMorePopularPeople();
     }
 
     public interface PresenterCallback extends BasePresenterCallback {
@@ -28,6 +30,8 @@ public class PopularContract {
 
     public interface Repository<P extends PresenterCallback> extends BaseRepository<P> {
         void getPopularPeople();
+
+        void getMorePopularPeople();
     }
 
 }
