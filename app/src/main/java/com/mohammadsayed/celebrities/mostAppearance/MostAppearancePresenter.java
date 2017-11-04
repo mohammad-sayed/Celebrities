@@ -70,6 +70,7 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
     }
 
     private void getTop20MoviesIds() {
+        getViewCallback().showNoResultMessage(false);
         getViewCallback().showLoadingIndicator(true);
         getRepository().getTopMoviesIds();
     }
@@ -88,7 +89,7 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
     @Override
     public void onMoviesCastsRetrieved() {
         getViewCallback().showLoadingIndicator(false);
-        //getMostAppearedPersonsList();
+        getMostAppearedPersonsList();
     }
 
     private void getMostAppearedPersonsList() {
@@ -98,8 +99,12 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
 
     @Override
     public void onMostAppearedPersonsRetrieved(List<Person> personsList) {
-        getRepository().getMostAppearedPersonsList();
-        getViewCallback().showLoadingIndicator(false);
+        if (personsList == null || personsList.isEmpty()) {
+            getViewCallback().showNoResultMessage(true);
+        } else {
+            getViewCallback().setPersonsToList(personsList);
+            getViewCallback().showLoadingIndicator(false);
+        }
     }
 
 }

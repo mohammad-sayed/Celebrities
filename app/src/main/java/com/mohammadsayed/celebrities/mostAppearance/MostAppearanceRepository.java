@@ -27,7 +27,9 @@ public class MostAppearanceRepository extends Repository<MostAppearanceContract.
 
     private List<Movie> mTopMovies = new ArrayList<>();
     private Map<Movie, List<Person>> mMoviesCreditsMap = new HashMap<>();
-    private Map<Long, Integer> mPersonAppearance = new HashMap<>();
+    private Map<Person, Integer> mPersonAppearance = new HashMap<Person, Integer>() {
+
+    };
     private int mMovieIndex = 0;
 
     public MostAppearanceRepository(Context context) {
@@ -63,6 +65,10 @@ public class MostAppearanceRepository extends Repository<MostAppearanceContract.
             return;
         }
 
+        if (mMovieIndex == 0) {
+            mMoviesCreditsMap.clear();
+        }
+
         final OnServiceErrorListener onServiceErrorListener = new OnServiceErrorListener() {
             @Override
             public void onError(CoreError error) {
@@ -79,6 +85,7 @@ public class MostAppearanceRepository extends Repository<MostAppearanceContract.
                 if (mMovieIndex < mTopMovies.size()) {
                     getMoviesCredits();
                 } else {
+                    mMovieIndex = 0;
                     getPresenterCallback().onMoviesCastsRetrieved();
                 }
             }
@@ -90,6 +97,37 @@ public class MostAppearanceRepository extends Repository<MostAppearanceContract.
 
     @Override
     public void getMostAppearedPersonsList() {
+        computePersonsAppearance();
+        List<Person> mostAppearedPersonsList = getMostAppearedPersons();
+        getPresenterCallback().onMostAppearedPersonsRetrieved(mostAppearedPersonsList);
+        mPersonAppearance.clear();
+    }
 
+    private List<Person> getMostAppearedPersons() {
+        List<Person> mostAppearedPersons = new ArrayList<>();
+        for (Map.Entry<Person, Integer> entry : mPersonAppearance.entrySet()) {
+            int numberOfAppearance = entry.getValue();
+            if (numberOfAppearance > 1) {
+                mostAppearedPersons.add(entry.getKey());
+            }
+        }
+        return mostAppearedPersons;
+    }
+
+    private void computePersonsAppearance() {
+        for (Map.Entry<Movie, List<Person>> entry : mMoviesCreditsMap.entrySet()) {
+            List<Person> personsList = entry.getValue();
+            if (personsList != null) {
+                for (Person person : personsList) {
+                    if (!mPersonAppearance.containsKey(person)) {
+                        mPersonAppearance.put(person, 1);
+                    } else {
+                        int numberOfAppearance = mPersonAppearance.get(person);
+                        numberOfAppearance++;
+                        mPersonAppearance.put(person, numberOfAppearance);
+                    }
+                }
+            }
+        }
     }
 }

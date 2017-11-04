@@ -1,6 +1,7 @@
 package com.mohammadsayed.celebrities.mostAppearance;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
@@ -10,6 +11,8 @@ import java.util.List;
 
 public class MostAppearanceFragment extends BaseMainViewPagerFragment<MostAppearanceContract.Presenter>
         implements MostAppearanceContract.ViewCallback<MostAppearanceContract.Presenter> {
+
+    private TextView mTvNoResult;
 
     public static MostAppearanceFragment getNewInstance() {
         return new MostAppearanceFragment();
@@ -34,11 +37,17 @@ public class MostAppearanceFragment extends BaseMainViewPagerFragment<MostAppear
     @Override
     protected void initializeViewsAndData(View view) {
         super.initializeViewsAndData(view);
+        mTvNoResult = view.findViewById(R.id.most_appearance_tv_no_result);
         getPresenter().getMostAppearedPersons();
     }
 
     @Override
-    public void addPersonsToList(List<Person> persons) {
-        getPersonsAdapter().addPersonsList(persons);
+    public void showNoResultMessage(boolean show) {
+        mTvNoResult.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void setPersonsToList(List<Person> persons) {
+        getPersonsAdapter().setPersonsList(persons);
     }
 }

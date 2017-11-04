@@ -12,12 +12,16 @@
         android:layout_height="match_parent"/>
 
     <TextView
+        android:id="@+id/most_appearance_tv_no_result"
         style="@style/DefaultTextView"
-        android:text="@string/home_title_most_appearance"
+        android:text="@string/most_appearance_no_result"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
+
 
     <ProgressBar
         android:id="@+id/pb_loading"

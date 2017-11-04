@@ -15,7 +15,9 @@ import java.util.List;
 public class MostAppearanceContract {
 
     public interface ViewCallback<P extends BasePresenter> extends BaseInternetViewCallback<P> {
-        void addPersonsToList(List<Person> persons);
+        void showNoResultMessage(boolean show);
+
+        void setPersonsToList(List<Person> persons);
     }
 
     public interface Presenter<V extends MostAppearanceContract.ViewCallback, R extends BaseRepository> extends BasePresenter<V, R> {

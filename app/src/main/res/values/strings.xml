@@ -15,5 +15,6 @@
     <string name="explore_search_title">Search</string>
     <string name="explore_type_in_search">Insert a person name</string>
     <string name="explore_no_result">Sorry, There is no result matching your query</string>
+    <string name="most_appearance_no_result">Sorry, There is no person has more than one appearance on top 20 movies</string>
 
 </resources>
