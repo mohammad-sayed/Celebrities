@@ -14,6 +14,10 @@
     <TextView
         android:id="@+id/most_appearance_tv_no_result"
         style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
         android:text="@string/most_appearance_no_result"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

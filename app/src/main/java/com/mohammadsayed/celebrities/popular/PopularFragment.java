@@ -1,10 +1,13 @@
 package com.mohammadsayed.celebrities.popular;
 
+import android.content.Intent;
 import android.view.View;
 
+import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 import com.mohammadsayed.celebrities.data.Person;
+import com.mohammadsayed.celebrities.persondetails.PersonDetailsActivity;
 
 import java.util.List;
 
@@ -45,5 +48,12 @@ public class PopularFragment extends BaseMainViewPagerFragment<PopularContract.P
     @Override
     public void addPopularPeopleToList(List<Person> persons) {
         getPersonsAdapter().addPersonsList(persons);
+    }
+
+    @Override
+    public void onPersonSelected(Person person) {
+        Intent intent = new Intent(getContext(), PersonDetailsActivity.class);
+        intent.putExtra(Constants.ExtrasKeys.PERSON, person);
+        goToActivity(intent);
     }
 }

@@ -17,6 +17,7 @@
     <string name="explore_no_result">Sorry, There is no result matching your query</string>
     <string name="most_appearance_no_result">Sorry, There is no person has more than one appearance on top 20 movies</string>
 
+    <string name="personal_details_title">Details</string>
     <string name="personal_details_info">Info</string>
     <string name="personal_details_place_of_birth">Place of Birth</string>
     <string name="personal_details_birthday">Birthday</string>

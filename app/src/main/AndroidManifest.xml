@@ -16,8 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".persondetails.PersonDetailsActivity">
-        </activity>
+        <activity
+            android:name=".persondetails.PersonDetailsActivity"
+            android:label="@string/personal_details_title"
+            android:parentActivityName=".main.MainActivity"/>
     </application>
 
 </manifest>

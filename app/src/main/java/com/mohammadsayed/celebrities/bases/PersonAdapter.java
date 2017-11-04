@@ -22,10 +22,12 @@ import java.util.List;
 
 public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolder> {
 
+    private PersonAdapter.OnPersonSelectedListener mOnPersonSelectedListener;
     private List<Person> mPersonDetails;
 
-    public PersonAdapter(Context context, int displayWidth, int columnSpan) {
+    public PersonAdapter(Context context, int displayWidth, int columnSpan, OnPersonSelectedListener onPersonSelectedListener) {
         super(context, displayWidth, columnSpan);
+        this.mOnPersonSelectedListener = onPersonSelectedListener;
         mPersonDetails = new ArrayList<>();
     }
 
@@ -42,7 +44,7 @@ public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolde
 
     @Override
     public void onBindViewHolder(PersonViewHolder holder, int position) {
-        Person person = mPersonDetails.get(position);
+        final Person person = mPersonDetails.get(position);
 
         if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
             String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, person.getProfilePicture());
@@ -52,6 +54,15 @@ public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolde
         }
 
         holder.mTvName.setText(person.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnPersonSelectedListener != null) {
+                    mOnPersonSelectedListener.onPersonSelected(person);
+                }
+            }
+        });
     }
 
     @Override
@@ -81,6 +92,10 @@ public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolde
     public void clear() {
         mPersonDetails.clear();
         notifyDataSetChanged();
+    }
+
+    public interface OnPersonSelectedListener {
+        void onPersonSelected(Person person);
     }
 
     public class PersonViewHolder extends RecyclerView.ViewHolder {

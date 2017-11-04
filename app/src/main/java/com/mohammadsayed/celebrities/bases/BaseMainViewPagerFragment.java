@@ -13,7 +13,8 @@ import com.mohammadsayed.celebrities.components.EndlessRecyclerOnScrollListener;
  * Created by Mohammad Sayed on 11/3/2017.
  */
 
-public abstract class BaseMainViewPagerFragment<P extends BasePresenter> extends BaseInternetFragment<P> {
+public abstract class BaseMainViewPagerFragment<P extends BasePresenter> extends BaseInternetFragment<P>
+        implements PersonAdapter.OnPersonSelectedListener {
 
     private String mPageTitle;
     private RecyclerView mRecyclerView;
@@ -40,7 +41,7 @@ public abstract class BaseMainViewPagerFragment<P extends BasePresenter> extends
         mGridLayoutManager = new GridLayoutManager(getContext(), spanCount);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         int displayWidth = AppUtility.getDisplayWidth(getActivity());
-        mPersonsAdapter = new PersonAdapter(getContext(), displayWidth, spanCount);
+        mPersonsAdapter = new PersonAdapter(getContext(), displayWidth, spanCount, this);
         mRecyclerView.setAdapter(mPersonsAdapter);
     }
 

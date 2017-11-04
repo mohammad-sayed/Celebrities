@@ -25,6 +25,7 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
     private TextView mTvDateOfBirth;
     private TextView mTvDateOfDeathTitle;
     private TextView mTvDateOfDeath;
+    private PersonPhotosAdapter mPersonPhotosAdapter;
 
     @Override
     protected int getLayoutResource() {
@@ -60,8 +61,8 @@ public class PersonDetailsFragment extends BaseInternetFragment<PersonDetailsCon
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), spanCount);
         recyclerView.setLayoutManager(gridLayoutManager);
         int displayWidth = AppUtility.getDisplayWidth(getActivity());
-        //mPersonsAdapter = new PersonAdapter(getContext(), displayWidth, spanCount);
-        //recyclerView.setAdapter(mPersonsAdapter);
+        mPersonPhotosAdapter = new PersonPhotosAdapter(getContext(), displayWidth, spanCount);
+        recyclerView.setAdapter(mPersonPhotosAdapter);
     }
 
     public void setPerson(Person person) {

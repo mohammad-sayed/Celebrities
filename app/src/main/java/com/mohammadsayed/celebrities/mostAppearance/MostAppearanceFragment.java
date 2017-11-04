@@ -1,11 +1,14 @@
 package com.mohammadsayed.celebrities.mostAppearance;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 import com.mohammadsayed.celebrities.data.Person;
+import com.mohammadsayed.celebrities.persondetails.PersonDetailsActivity;
 
 import java.util.List;
 
@@ -49,5 +52,12 @@ public class MostAppearanceFragment extends BaseMainViewPagerFragment<MostAppear
     @Override
     public void setPersonsToList(List<Person> persons) {
         getPersonsAdapter().setPersonsList(persons);
+    }
+
+    @Override
+    public void onPersonSelected(Person person) {
+        Intent intent = new Intent(getContext(), PersonDetailsActivity.class);
+        intent.putExtra(Constants.ExtrasKeys.PERSON, person);
+        goToActivity(intent);
     }
 }
