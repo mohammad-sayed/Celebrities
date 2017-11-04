@@ -23,9 +23,11 @@ import java.util.List;
 public class PersonPhotosAdapter extends BaseGridAdapter<PersonPhotosAdapter.PersonPhotoViewHolder> {
 
     private List<Photo> mPhotos;
+    private OnPersonPhotoSelectedListener mOnPersonPhotoSelectedListener;
 
-    public PersonPhotosAdapter(Context context, int displayWidth, int columnSpan) {
+    public PersonPhotosAdapter(Context context, int displayWidth, int columnSpan, OnPersonPhotoSelectedListener onPersonPhotoSelectedListener) {
         super(context, displayWidth, columnSpan);
+        this.mOnPersonPhotoSelectedListener = onPersonPhotoSelectedListener;
         mPhotos = new ArrayList<>();
     }
 
@@ -42,7 +44,7 @@ public class PersonPhotosAdapter extends BaseGridAdapter<PersonPhotosAdapter.Per
 
     @Override
     public void onBindViewHolder(PersonPhotoViewHolder holder, int position) {
-        Photo photo = mPhotos.get(position);
+        final Photo photo = mPhotos.get(position);
 
         if (!StringUtil.isEmpty(photo.getPhotoPath(), true)) {
             String fullUrl = AppUtility.getFullUrl(Constants.Photo.PROFILE_SIZE, photo.getPhotoPath());
@@ -50,6 +52,14 @@ public class PersonPhotosAdapter extends BaseGridAdapter<PersonPhotosAdapter.Per
         } else {
             Picasso.with(mContext).load(R.drawable.img_not_found).into(holder.mIvPhoto);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnPersonPhotoSelectedListener != null) {
+                    mOnPersonPhotoSelectedListener.onPhotoSelected(photo);
+                }
+            }
+        });
     }
 
     @Override
@@ -89,5 +99,9 @@ public class PersonPhotosAdapter extends BaseGridAdapter<PersonPhotosAdapter.Per
             super(itemView);
             mIvPhoto = itemView.findViewById(R.id.iv_item_photo);
         }
+    }
+
+    public interface OnPersonPhotoSelectedListener {
+        void onPhotoSelected(Photo photo);
     }
 }

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+        <activity
+            android:name=".main.MainActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,7 +21,13 @@
         <activity
             android:name=".persondetails.PersonDetailsActivity"
             android:label="@string/personal_details_title"
+            android:launchMode="singleInstance"
             android:parentActivityName=".main.MainActivity"/>
+        <activity
+            android:name=".photo.PhotoActivity"
+            android:label="@string/personal_photo_title"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".persondetails.PersonDetailsActivity"/>
     </application>
 
 </manifest>

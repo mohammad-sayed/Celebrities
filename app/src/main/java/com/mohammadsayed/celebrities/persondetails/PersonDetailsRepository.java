@@ -33,6 +33,9 @@ public class PersonDetailsRepository extends Repository<PersonDetailsContract.Pr
 
     @Override
     public void savePersonDetails(Person person) {
+        if (person == null) {
+            return;
+        }
         this.mPerson = person;
     }
 
