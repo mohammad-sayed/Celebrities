@@ -36,6 +36,10 @@ public interface Constants {
         int MALE = 2;
     }
 
+    interface ExtrasKeys {
+        String PERSON = "person";
+    }
+
     interface ErrorCodes {
         int GET_POPULAR_PEOPLE = 1;
         int EXPLORE_PERSONS = 2;
