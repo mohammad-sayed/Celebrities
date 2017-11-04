@@ -2,9 +2,7 @@ package com.mohammadsayed.celebrities.bases;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,25 +20,23 @@ import java.util.List;
  * Created by Mohammad Sayed on 11/3/2017.
  */
 
-public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder> {
+public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolder> {
 
-    private Context mContext;
     private List<Person> mPersonDetails;
-    private int mDisplayWidth;
-    private int mColumnSpan;
 
     public PersonAdapter(Context context, int displayWidth, int columnSpan) {
-        this.mContext = context;
+        super(context, displayWidth, columnSpan);
         mPersonDetails = new ArrayList<>();
-        this.mDisplayWidth = displayWidth;
-        this.mColumnSpan = columnSpan;
+    }
+
+
+    @Override
+    int getItemLayout() {
+        return R.layout.list_item_person;
     }
 
     @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.list_item_person, parent, false);
-        view.getLayoutParams().width = mDisplayWidth / mColumnSpan;
+    PersonViewHolder createViewHolder(View view) {
         return new PersonViewHolder(view);
     }
 
