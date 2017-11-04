@@ -1,5 +1,6 @@
 package com.mohammadsayed.celebrities.explore;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
@@ -11,9 +12,11 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.mohammadsayed.celebrities.AppUtility;
+import com.mohammadsayed.celebrities.Constants;
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
 import com.mohammadsayed.celebrities.data.Person;
+import com.mohammadsayed.celebrities.persondetails.PersonDetailsActivity;
 
 import java.util.List;
 
@@ -116,5 +119,12 @@ public class ExploreFragment extends BaseMainViewPagerFragment<ExploreContract.P
     @Override
     public void showNoResultMessage(boolean show) {
         mTvNoResult.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void onPersonSelected(Person person) {
+        Intent intent = new Intent(getContext(), PersonDetailsActivity.class);
+        intent.putExtra(Constants.ExtrasKeys.PERSON, person);
+        goToActivity(intent);
     }
 }

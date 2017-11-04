@@ -2,9 +2,7 @@ package com.mohammadsayed.celebrities.bases;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,40 +20,49 @@ import java.util.List;
  * Created by Mohammad Sayed on 11/3/2017.
  */
 
-public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder> {
+public class PersonAdapter extends BaseGridAdapter<PersonAdapter.PersonViewHolder> {
 
-    private Context mContext;
+    private PersonAdapter.OnPersonSelectedListener mOnPersonSelectedListener;
     private List<Person> mPersonDetails;
-    private int mDisplayWidth;
-    private int mColumnSpan;
 
-    public PersonAdapter(Context context, int displayWidth, int columnSpan) {
-        this.mContext = context;
+    public PersonAdapter(Context context, int displayWidth, int columnSpan, OnPersonSelectedListener onPersonSelectedListener) {
+        super(context, displayWidth, columnSpan);
+        this.mOnPersonSelectedListener = onPersonSelectedListener;
         mPersonDetails = new ArrayList<>();
-        this.mDisplayWidth = displayWidth;
-        this.mColumnSpan = columnSpan;
+    }
+
+
+    @Override
+    protected int getItemLayout() {
+        return R.layout.list_item_person;
     }
 
     @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.list_item_person, parent, false);
-        view.getLayoutParams().width = mDisplayWidth / mColumnSpan;
+    protected PersonViewHolder createViewHolder(View view) {
         return new PersonViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(PersonViewHolder holder, int position) {
-        Person person = mPersonDetails.get(position);
+        final Person person = mPersonDetails.get(position);
 
         if (!StringUtil.isEmpty(person.getProfilePicture(), true)) {
-            String fullUrl = AppUtility.getFullUrl(Constants.Image.PROFILE_SIZE, person.getProfilePicture());
+            String fullUrl = AppUtility.getFullUrl(Constants.Photo.PROFILE_SIZE, person.getProfilePicture());
             Picasso.with(mContext).load(fullUrl).error(R.drawable.img_not_found).into(holder.mIvProfilePicture);
         } else {
             Picasso.with(mContext).load(R.drawable.img_not_found).into(holder.mIvProfilePicture);
         }
 
         holder.mTvName.setText(person.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnPersonSelectedListener != null) {
+                    mOnPersonSelectedListener.onPersonSelected(person);
+                }
+            }
+        });
     }
 
     @Override
@@ -85,6 +92,10 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     public void clear() {
         mPersonDetails.clear();
         notifyDataSetChanged();
+    }
+
+    public interface OnPersonSelectedListener {
+        void onPersonSelected(Person person);
     }
 
     public class PersonViewHolder extends RecyclerView.ViewHolder {

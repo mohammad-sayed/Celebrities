@@ -1,12 +1,15 @@
 package com.mohammadsayed.celebrities.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Mohammad Sayed on 11/3/2017.
  */
 
-public class Person {
+public class Person implements Parcelable {
     private long id;
 
     private String name;
@@ -18,6 +21,43 @@ public class Person {
 
     @SerializedName("adult")
     private boolean isAdult;
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Person> CREATOR
+            = new Creator<Person>() {
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
+
+    public Person() {
+    }
+
+    public Person(Parcel in) {
+        setId(in.readLong());
+        setName(in.readString());
+        setProfilePicture(in.readString());
+        setPopularity(in.readDouble());
+        setAdult(in.readInt() == 1);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(getId());
+        dest.writeString(getName());
+        dest.writeString(getProfilePicture());
+        dest.writeDouble(getPopularity());
+        dest.writeInt(isAdult ? 1 : 0);
+    }
 
     public long getId() {
         return id;

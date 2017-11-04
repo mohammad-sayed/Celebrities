@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_person_details_profile_picture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/temp_image"/>
+
+            <TextView
+                android:id="@+id/tv_person_details_name"
+                style="@style/DefaultTitleTextView"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                tools:text="Mohammad Sayed"/>
+
+            <TextView
+                android:id="@+id/tv_person_details_bio"
+                style="@style/DefaultTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                tools:text="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. "/>
+
+            <TextView
+                style="@style/DefaultTitleTextView"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/personal_details_info"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/DefaultTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/personal_details_place_of_birth"
+                    android:textColor="@color/yellowFFEB3B"/>
+
+                <TextView
+                    style="@style/DefaultTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/personal_details_birthday"
+                    android:textColor="@color/yellowFFEB3B"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_person_details_place_of_birth"
+                    style="@style/DefaultTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:layout_columnWeight="1"
+                    tools:text="Alexandria, Egypt"/>
+
+                <TextView
+                    android:id="@+id/tv_person_details_birthday"
+                    style="@style/DefaultTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="11.October.1990"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_person_details_death_day_title"
+                style="@style/DefaultTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/personal_details_deathday"
+                android:textColor="@color/yellowFFEB3B"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_person_details_death_day"
+                style="@style/DefaultTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:text="ALLAH only knows"
+                tools:visibility="visible"/>
+
+            <TextView
+                style="@style/DefaultTitleTextView"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/personal_details_photos"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_person_details_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <!--<android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>-->
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_title_popular"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
+
+</android.support.constraint.ConstraintLayout>

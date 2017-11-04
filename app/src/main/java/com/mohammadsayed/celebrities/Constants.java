@@ -12,9 +12,11 @@ public interface Constants {
         String SEARCH_PEOPLE_URI = "/search/person";
         String GET_TOP_20_MOVIES_URI = "/movie/popular";
         String GET_MOVIE_CREDITS_URI = "/movie/%1$d/credits";
+        String GET_PERSON_DETAILS_URI = "/person/%1$d";
+        String GET_PERSON_PHOTOS_URI = "/person/%1$d/images";
     }
 
-    interface Image {
+    interface Photo {
         String BASE_IMAGES_URL = "http://image.tmdb.org/t/p/";
         String PROFILE_SIZE = "w185";
     }
@@ -36,13 +38,18 @@ public interface Constants {
         int MALE = 2;
     }
 
+    interface ExtrasKeys {
+        String PERSON = "person";
+    }
+
     interface ErrorCodes {
         int GET_POPULAR_PEOPLE = 1;
         int EXPLORE_PERSONS = 2;
         int EXPLORE_MORE_PERSONS = 3;
         int GET_TOP_20_MOVIES = 4;
         int GET_MOVIES_CREDITS = 5;
-        int GET_PERSONS_DETAILS = 6;
+        int GET_PERSON_DETAILS = 6;
+        int GET_PERSON_PHOTOS = 7;
     }
 
     interface ResponseCodes {

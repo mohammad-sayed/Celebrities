@@ -44,14 +44,6 @@ public class MostAppearancePresenter extends Presenter<MostAppearanceContract.Vi
                     }
                 });
                 break;
-            case Constants.ErrorCodes.GET_PERSONS_DETAILS:
-                getViewCallback().showSnackBar(error.getMessage(), Snackbar.LENGTH_INDEFINITE, R.string.snackbar_retry, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getMostAppearedPersonsList();
-                    }
-                });
-                break;
             default:
                 getViewCallback().showSnackBar(error.getMessage(), Snackbar.LENGTH_INDEFINITE, R.string.snackbar_dismiss, null);
         }

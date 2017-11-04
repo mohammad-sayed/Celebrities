@@ -18,7 +18,7 @@ public class AppUtility {
     }
 
     public static String getFullUrl(String imageSize, String imagePath) {
-        String fullUrl = Constants.Image.BASE_IMAGES_URL + imageSize + imagePath;
+        String fullUrl = Constants.Photo.BASE_IMAGES_URL + imageSize + imagePath;
         return fullUrl;
     }
 }
