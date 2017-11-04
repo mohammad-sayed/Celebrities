@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/person_iv_profile_picture"
+    android:id="@+id/iv_item_photo"
     android:layout_width="150dp"
     android:layout_height="150dp"
     android:scaleType="centerCrop"

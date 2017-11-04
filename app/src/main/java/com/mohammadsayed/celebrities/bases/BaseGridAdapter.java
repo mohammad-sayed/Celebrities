@@ -30,7 +30,7 @@ public abstract class BaseGridAdapter<VH extends RecyclerView.ViewHolder> extend
         return createViewHolder(view);
     }
 
-    abstract int getItemLayout();
+    abstract protected int getItemLayout();
 
-    abstract VH createViewHolder(View view);
+    abstract protected VH createViewHolder(View view);
 }
