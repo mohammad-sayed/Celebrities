@@ -4,6 +4,9 @@ import android.view.View;
 
 import com.mohammadsayed.celebrities.R;
 import com.mohammadsayed.celebrities.bases.BaseMainViewPagerFragment;
+import com.mohammadsayed.celebrities.data.Person;
+
+import java.util.List;
 
 public class MostAppearanceFragment extends BaseMainViewPagerFragment<MostAppearanceContract.Presenter>
         implements MostAppearanceContract.ViewCallback<MostAppearanceContract.Presenter> {
@@ -24,12 +27,18 @@ public class MostAppearanceFragment extends BaseMainViewPagerFragment<MostAppear
     }
 
     @Override
-    protected void initializeViewsAndData(View view) {
-
+    public MostAppearanceContract.Presenter setUpPresenter() {
+        return new MostAppearancePresenter(getContext());
     }
 
     @Override
-    public MostAppearanceContract.Presenter setUpPresenter() {
-        return new MostAppearancePresenter(getContext());
+    protected void initializeViewsAndData(View view) {
+        super.initializeViewsAndData(view);
+        getPresenter().getMostAppearedPersons();
+    }
+
+    @Override
+    public void addPersonsToList(List<Person> persons) {
+        getPersonsAdapter().addPersonsList(persons);
     }
 }
