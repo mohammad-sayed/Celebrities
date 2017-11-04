@@ -14,6 +14,15 @@ public class Person implements Parcelable {
 
     private String name;
 
+    @SerializedName("profile_path")
+    private String profilePicture;
+
+    private double popularity;
+
+    @SerializedName("adult")
+    private boolean isAdult;
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -36,22 +45,19 @@ public class Person implements Parcelable {
     public Person(Parcel in) {
         setId(in.readLong());
         setName(in.readString());
+        setProfilePicture(in.readString());
+        setPopularity(in.readDouble());
+        setAdult(in.readInt() == 1);
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(getId());
         dest.writeString(getName());
+        dest.writeString(getProfilePicture());
+        dest.writeDouble(getPopularity());
+        dest.writeInt(isAdult ? 1 : 0);
     }
-
-
-    @SerializedName("profile_path")
-    private String profilePicture;
-
-    private double popularity;
-
-    @SerializedName("adult")
-    private boolean isAdult;
 
     public long getId() {
         return id;
