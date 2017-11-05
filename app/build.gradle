@@ -31,6 +31,5 @@ dependencies {
     implementation "com.android.support:design:${appcompat_version}"
     implementation "com.android.support:gridlayout-v7:${appcompat_version}"
     implementation project(':core')
-    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 }

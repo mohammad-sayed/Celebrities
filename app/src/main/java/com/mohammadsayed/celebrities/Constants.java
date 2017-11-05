@@ -52,10 +52,14 @@ public interface Constants {
         int GET_MOVIES_CREDITS = 5;
         int GET_PERSON_DETAILS = 6;
         int GET_PERSON_PHOTOS = 7;
+        int DOWNLOAD_PHOTO_FAILED = 8;
     }
 
     interface ResponseCodes {
         int SUCCESS = 200;
     }
 
+    public interface PermissionRequestCodes {
+        int WRITE_EXTERNAL_STORAGE = 1;
+    }
 }

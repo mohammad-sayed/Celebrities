@@ -26,5 +26,14 @@
     <string name="personal_details_place_of_birth_unknown">Unknown</string>
 
     <string name="personal_photo_title">Photo</string>
+    <string name="personal_photo_download_title">Download</string>
+    <string name="personal_photo_photo_downloaded">Photo Saved Successfully</string>
+    <string name="personal_photo_error_downloading">Sorry, there is an error in downloading photo</string>
+    <string name="personal_photo_error_saving">Sorry, there is an error in saving photo</string>
+
+    <string name="permission_write_external_title">Write in External Storage Permission</string>
+    <string name="permission_write_external_description">This permission is required to save your downloaded file in your device</string>
+    <string name="permission_write_external_denied">You can\'t download a file until you allow External Storage Permission</string>
+
 
 </resources>
